@@ -10,7 +10,6 @@ setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 setopt nobeep              # prevents beeping on errors
-unsetopt histverify        # prevents command confirmation upon !
 
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
@@ -314,3 +313,6 @@ export HOST="kali"
 
 # prevents command confirmation upon running using !
 unsetopt histverify
+
+# unsetting askpass variable for ssh
+unset SSH_ASKPASS
