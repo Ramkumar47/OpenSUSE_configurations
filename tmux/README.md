@@ -1,8 +1,8 @@
-# Tmux configuration
-This directory contains tmux - terminal multiplexer configuration files that
-were used in gnome-terminal.
+# tmux configuration
+This folder contains tmux configuration files.
 
-the file *tmux* has to be placed under $HOME/.config/ directory.
+Place the contents of this folder in ~/.config/tmux/ folder
 
-Any new plugins can be installed by making the entry on tmux.conf file and
-(using tpm) C-b I keybinding.
+This configuration has a customized status bar that requires nerd fonts for
+proper work. These nerd patched fonts can be installed from ../fonts/ directory
+in the same repository.
