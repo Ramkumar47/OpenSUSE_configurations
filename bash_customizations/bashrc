@@ -114,11 +114,20 @@ function parse_git_dirty {
     fi
 }
 
-# export PS1="\n[\[\e[32m\]\`parse_git_branch\`\[\e[m\] \[\e[36m\]\w \[\e[m\]]\[\e[34m\] \@\n\[\e[m\] "
+# get conda environment name
+function get_conda_env(){
+    if [ -z $CONDA_DEFAULT_ENV ]
+    then
+        echo ""
+    else
+        echo \($CONDA_DEFAULT_ENV\)
+    fi
+}
 
 _bold=$(tput bold)
 _reset=$(tput sgr0)
-export PS1="\n[\[\e[32m\]\`parse_git_branch\`\[\e[m\] \[\e[36m\]${_bold}\w${_reset} \[\e[m\]]\[\e[33m\] \@\n\[\e[m\] "
+# export PS1="\n[\[\e[32m\]\`parse_git_branch\`\[\e[m\] \[\e[36m\]${_bold}\w${_reset} \[\e[m\]]\[\e[33m\] \@\n\[\e[m\] "
+export PS1="\n[\[\e[32m\]\`parse_git_branch\`\[\e[m\] \[\e[36m\]${_bold}\w${_reset} \[\e[m\]]\[\e[33m\] \@\e[m\] \`get_conda_env\`\n "
 PROMPT_DIRTRIM=3
 # leaving a line before any output
 export PS0="\n"
@@ -179,6 +188,23 @@ if ! shopt -oq posix; then
 fi
 
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ramkumar/Software/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ramkumar/Software/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ramkumar/Software/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ramkumar/Software/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # custom aliases
 alias wd="mkdir -p ~/Working_Directory && cd ~/Working_Directory"
 alias temp="mkdir -p ~/Working_Directory/temp && cd ~/Working_Directory/temp"
+alias ac="conda activate base"
+alias dac="conda deactivate"
